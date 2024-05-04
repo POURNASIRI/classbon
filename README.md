@@ -1,3 +1,6 @@
+# Classbon
+This is a practice project to learn advanced NEXT topics.
+This project is based on an advanced training in which new React libraries such as React Query and zustand have been used.
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
