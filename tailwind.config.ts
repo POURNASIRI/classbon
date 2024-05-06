@@ -12,7 +12,7 @@ export function generateForegroundColorFrom(input: string,percentage = 0.8): str
       .toHex();
 }
 
-const tailwindColors:{[key:string]:string}={
+export const tailwindColors:{[key:string]:string}={
   current: "currentColor",
   transparent: "transparent",
   white: "#F9F9F9",
@@ -53,7 +53,7 @@ const tailwindColors:{[key:string]:string}={
 
 const config: Config = {
   content: [
-    "./src/app/**/*.{tsx}",
+    "./src/app/**/*.{tsx,jsx}",
   ],
   theme: {
     colors:tailwindColors,
