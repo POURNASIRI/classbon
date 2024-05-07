@@ -2,3 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+    font-family: var(--font-IRSans);
+}
+
+:lang(en) {
+    font-family: var(--font-figtree);
+}

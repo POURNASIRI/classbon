@@ -14,7 +14,8 @@ const ColorBox: React.FC<{ name: string; color: string }> = ({
     name,
     color,
 }) => (
-    <div
+    <div dir="ltr"
+    lang="en"
         className="w-96 h-60 flex flex-col items-center justify-center text-center uppercase"
         style={{
             backgroundColor: color,
