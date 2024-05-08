@@ -57,6 +57,9 @@ const config: Config = {
   ],
   theme: {
     colors:tailwindColors,
+    container:{
+      center:true 
+    },
     extend: {
     },
   },
