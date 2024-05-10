@@ -1,5 +1,6 @@
 import { Colors } from "@/app/_components/colors";
 import Image from "next/image";
+import { Button } from "./_components/button";
 export default function Home() {
   return (
     <>
@@ -17,6 +18,7 @@ export default function Home() {
               کلاسبن می‌تونی بدون محدودیت به قله‌های بالاتر صعود کنی. ما همیشه
               هواتو داریم.
             </p>
+            <Button isOutline={true} variant="primary">دوره های ری اکت و نکست</Button>
             <Image
               src="/images/frameworks.png"
               className="grayscale mt-4 opacity-70 m-auto xl:m-0"
