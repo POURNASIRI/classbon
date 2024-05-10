@@ -18,7 +18,10 @@ export default function Home() {
               کلاسبن می‌تونی بدون محدودیت به قله‌های بالاتر صعود کنی. ما همیشه
               هواتو داریم.
             </p>
-            <Button isOutline={true} variant="primary">دوره های ری اکت و نکست</Button>
+            <div className="mt-5 flex gap-4">
+            <Button size="large" variant="primary">دوره های ری اکت و نکست</Button>
+            <Button size="large" variant="neutral">مشاوره برنامه نویسی</Button>
+            </div>
             <Image
               src="/images/frameworks.png"
               className="grayscale mt-4 opacity-70 m-auto xl:m-0"
