@@ -1,7 +1,7 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
+@import "../tailwind/components.css";
 @import "tailwindcss/utilities";
-@import '../tailwind/components.css';
 
 html {
     font-family: var(--font-IRSans);
