@@ -4,7 +4,7 @@ import { Variant } from "./variant.type"
 
  export type ComponentBase = {
     isDisabled?:boolean,
-    clasName?:string,
+    className?:string,
     variant?:Variant ,
     size?:Size;
  }
