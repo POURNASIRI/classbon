@@ -4,6 +4,7 @@ import Link from "next/link";
 import { CourseSummary } from "@/types/course-summery.interface";
 import { Badge } from "@/app/_components/badge";
 import { IconArrowLeftFill, IconClock } from "@/app/_components/icons/icons";
+import { Price } from "@/app/_components/price";
 
 export type CourseCardProps = CourseSummary & {};
 
@@ -44,8 +45,7 @@ export const CourseCard: React.FC<CourseCardProps> = ({
                     <Badge variant="warning">
                     <IconClock width={16} height={16} />{duration}
                     </Badge>
-
-                    {basePrice}
+                    <Price price={basePrice}/>
                 </div>
             </div>
 
