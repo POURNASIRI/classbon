@@ -1,8 +1,9 @@
-export default async function SignIn(){
+export default async function SingIn(){
     
+ 
     return(
-        <div>
-            SignIn
+        <div className="text-5xl flex justify-center items-center">
+            <h1>Sing In</h1>
         </div>
     )
 }

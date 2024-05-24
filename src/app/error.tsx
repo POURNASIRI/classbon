@@ -1,9 +1,9 @@
 'use client'
 
-export default function Error(){
-    return(
-        <div className="text-6xl text-red-800  flex items-center justify-center">
-            Error
-        </div>
-    )
+ function error() {
+  return (
+    <div className='text-3xl flex justify-center items-center text-red-800'>Error</div>
+  )
 }
+
+export default error

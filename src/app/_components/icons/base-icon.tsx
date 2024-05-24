@@ -1,10 +1,11 @@
-"use client";
-import React, { FC, SVGAttributes } from "react";
+
+import React, { FC } from "react";
 import { SvgIcon } from "./icon.types";
 
 
 
-// eslint-disable-next-line react/display-name
+
+
 export const BaseIcon: FC<SvgIcon> = ({
   color = "currentColor",
   width= 24,
@@ -16,16 +17,17 @@ export const BaseIcon: FC<SvgIcon> = ({
 }) => {
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={width}
-      height={height}
-      viewBox={viewBox}
-      fill="none"
-      strokeWidth={strokeWidth}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      {...rest}
-      stroke={`${color}`}
+    xmlns="http://www.w3.org/2000/svg"
+    width={width}
+    height={height}
+    viewBox={viewBox}
+    fill="none"
+    strokeWidth={strokeWidth}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    stroke={color}
+    {...rest}
+
     >
       {children}
     </svg>

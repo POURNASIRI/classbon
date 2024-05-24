@@ -1,8 +1,9 @@
-export default async function CoursesDetails(){
+export default async function CourseDetails(){
     
+ 
     return(
-        <div>
-            CoursesDetails
+        <div className="text-5xl flex justify-center items-center">
+            <h1>CourseDetails</h1>
         </div>
     )
 }

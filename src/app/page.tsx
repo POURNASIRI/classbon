@@ -1,67 +1,82 @@
-
 import { CourseSummary } from "@/types/course-summary.interface";
-import {HomeHeroSection} from "./_components/home-hero-section/home-hero-section";
-import { CourseCardList } from "./(courses)/_component/course-card-list";
-import Feature from "./_components/feature/feature";
+import { HomeHeroSection } from "./_components/home-hero-section";
+import { CourseCardList } from "./(courses)/courses/_components/course-card-list";
+import {IconArrowLeftFill, IconClock} from './_components/icons/icons'
 import { homeFeatures } from "@/data/home-feature";
-import { IconArrowLeftFill } from "./_components/icons/icons";
+import Feature from "./_components/feature/feature";
 import { Button } from "./_components/button";
-import { BlogPostCardList } from "./(blog)/_components/blog-post-card-list";
 import { BlogPostSummary } from "@/types/blog-post-summary.interface";
+import { BlogPostCardList } from "./(blog)/_components/blog-post-card-list";
 
 
+async function GetNewestCourses(count:number): Promise<CourseSummary[]> {
+      // Note: this fetch is server side fetch becouse this component
+      //  is server component.
 
-async function getNewestCourses(count:number):Promise<CourseSummary[]>{
-    const res  = await fetch(`https://api.classbon.com/api/courses/newest/${count}`,
-      {
+
+      //NOTE 1-
+      // next.js cash this URL if need use this url and function in another page
+      // just need copy this function and passed in specific component 
+      // in next.js hole the application this function just call one time
+      const res = await fetch(`https://api.classbon.com/api/courses/newest/${count}`,{
         next:{
-          revalidate: 24 * 60 * 60
+          revalidate:24 * 60 * 60    //24h
         }
       });
-    return res.json()
+      return res.json();
+      // NOTE 2-
+      // response of this function also cash in next.js data chashing in server side
+      // when we navigate another page and return to uome page in this time 
+      // response read from chash and dont fetch again from database expect when our 
+      // data be going revalidate
 }
 async function GetNewestPosts(count:number): Promise<BlogPostSummary[]> {
 
-    const res = await fetch(`https://api.classbon.com/api/blog/newest/${count}`,{
-      next:{
-        revalidate:24 * 60 * 60    //24h
-      }
-    });
-    return res.json();
+  const res = await fetch(`https://api.classbon.com/api/blog/newest/${count}`,{
+    next:{
+      revalidate:24 * 60 * 60    //24h
+    }
+  });
+  return res.json();
 
-  
-  }
+}
 
+
+// Note Static Rendering (read Readme file )
 
 export default async function Home() {
 
-   const newestCoursesData = await  getNewestCourses(4)
-//    const newestBlogPostsData = await  GetNewestPosts(4)
-//    const [newestCourses,newestBlogPosts] = await Promise.all([newestCoursesData,newestBlogPostsData])
+  const newestCoursesData = await GetNewestCourses(4)
+  // const newestBlogPostdata =  GetNewestPosts(4)
 
-//  console.log(newestBlogPostsData)
+// NOTE 
+//  const[newestCourses,newestBlogPost] = await Promise.all([newestCoursesData,newestBlogPostdata])
+// console.log(newestBlogPost)
+
   return (
-    <>
-     <HomeHeroSection/>
-     <section className="dark:bg-base-75 mt-10 px-20 container">
-          <div className="container py-10 flex flex-col lg:flex-row gap-10 xl:gap-5">
-              {homeFeatures.map((feature) => (
-                  <Feature key={`feature-${feature.title}`} feature={feature} />
-              ))}
-          </div>
-      </section>
-     <section className="container px-20  pt-20">
-        <div className="text-center xl:text-right">
-            <h2 className="text-2xl font-extrabold">
+      <>
+          <HomeHeroSection/>
+          <section className="dark:bg-base-75 mt-10">
+              <div className="container py-10 flex flex-col lg:flex-row gap-10 xl:gap-5 px-20">
+                {
+                  homeFeatures.map((feature)=>(
+                    <Feature key={feature.title} feature={feature}/>
+                  ))
+                }
+              </div>
+          </section>
+          <section className="container p-2 px-20">
+            <div className="text-center xl:text-right">
+              <h2 className="text-2xl font-extrabold">
                 تازه ترین دوره های آموزشی
-            </h2>
-            <p className="mt-3 text-lg">
-                برای به‌روز موندن، یاد گرفتن نکته‌های تازه ضروری‌ه!
-            </p>
-        </div>
-        <CourseCardList courses={newestCoursesData} />
-        </section>
-        <section className="px-2 my-40">
+              </h2>
+              <p>
+                برای بروز موندن، یاد گرفتن نکته های تازه ضروریه
+              </p>
+            </div>
+            <CourseCardList courses={newestCoursesData}/>
+          </section>
+          <section className="px-2 my-40">
                 {/* <div className="sticky top-0 pt-0 text-center"> */}
                 <div className="relative pt-0 text-center">
                     <div className="bg-primary pointer-events-none absolute left-1/2 aspect-square w-1/2 -translate-x-1/2 -top-96 rounded-full opacity-10 blur-3xl"></div>
@@ -100,7 +115,7 @@ export default async function Home() {
                     </div>
                 </div>
             </section>
-            <section className="container py-20">
+            <section className="container py-20 px-20">
                 <div className="flex flex-col xl:flex-row gap-4 justify-center xl:justify-between items-center">
                     <div className="text-center xl:text-right">
                         <h2 className="text-2xl font-extrabold">
@@ -120,8 +135,9 @@ export default async function Home() {
                         <IconArrowLeftFill fill="currentColor" />
                     </Button>
                 </div>
-                {/* <BlogPostCardList posts={newestBlogPosts} /> */}
+                <BlogPostCardList posts={[]}/>
             </section>
-    </>
+
+      </>
   );
 }

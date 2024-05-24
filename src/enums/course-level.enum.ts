@@ -1,5 +1,5 @@
-export enum CourseLevel {
-    Beginners = 0,
+export enum CourseLevel{
+    Biginner = 0,
     Intermediate,
     Advance
 }

@@ -1,10 +1,12 @@
 
+
 import { Size } from "./size.type"
 import { Variant } from "./variant.type"
 
- export type ComponentBase = {
+// all components must be have this type
+export type ComponentBase = {
     isDisabled?:boolean,
     className?:string,
-    variant?:Variant ,
-    size?:Size;
- }
+    variant?: Variant,
+    size?:Size,
+}

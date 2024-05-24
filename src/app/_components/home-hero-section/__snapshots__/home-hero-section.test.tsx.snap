@@ -31,7 +31,7 @@ exports[`display the home hero section:
         1`] = `
 <div>
   <section
-    class="bg-hero-pattern px-20 bg-no-repeat bg-center mt-5 xl:mt-20 xl:bg-left "
+    class="bg-hero-pattern px-40 bg-no-repeat bg-center mt-5 xl:mt-20 xl:bg-left "
   >
     <div
       class="container flex flex-col-reverse items-center xl:flex-row "

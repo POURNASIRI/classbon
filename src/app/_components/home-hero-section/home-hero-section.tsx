@@ -3,7 +3,7 @@ import { Button } from "../button"
 
 export const HomeHeroSection: React.FC =()=>{
     return(
-        <section className="bg-hero-pattern px-20 bg-no-repeat bg-center mt-5 xl:mt-20 xl:bg-left container ">
+        <section className="bg-hero-pattern px-20 bg-no-repeat bg-center mt-5 xl:mt-20 xl:bg-left ">
         <div className="container flex flex-col-reverse items-center xl:flex-row ">
           <div className="flex flex-col gap-5 mt-12 pb-5 text-center
           xl:text-right">

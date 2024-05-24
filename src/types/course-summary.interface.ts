@@ -6,7 +6,7 @@ export interface CourseSummary {
     courseCategoryId: number;
     duration: string;
     level: string;
-    // levelNumber: CourseLevel;
+    levelNumber: CourseLevel;
     averageReviewRating: number | null;
     numOfReviews: number | null;
     coverImageId: number | null;
@@ -14,5 +14,6 @@ export interface CourseSummary {
     slug: string;
     subTitle: string;
     isFree: boolean;
-    basePrice: number;
+    basePrice: number
+
 }

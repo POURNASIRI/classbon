@@ -1,124 +1,101 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { Button } from "./button";
-import results from '../../../../.jest-test-results.json';
+import {Meta, StoryObj} from '@storybook/react'
+import { Button } from './button'
+import results from '../../../../.jest-test-results.json'
+
 import {withTests} from '@storybook/addon-jest'
 
-const meta: Meta<typeof Button> = {
+const meta: Meta<typeof Button> ={
     component: Button,
-    tags: ["autodocs"],
-    decorators: [
-        (Story) => {
-          document.documentElement.classList.add('dark');
-          return <Story />;
-        },
-      ],
+    tags:['autodocs'],         //it means this file automaticly detect by storybook this value alwayes set in autodoce
+
+    decorators:[               //for add dark mode staticly to storybook body
+        (Story)=>{
+            document.documentElement.classList.add('dark');
+            return <Story/>
+        }
+    ]
 }
 
 export default meta;
 
+
+
 type Story = StoryObj<typeof Button>;
 
 export const Tests:Story = {
-    render:(args)=> (<Button {...args}>Click here</Button>)
+    render:(arge) =>(<Button {...arge} >Click here</Button>) 
 }
+
 Tests.decorators = [withTests({results})]
 
-export const BrandColors: Story = {
-    render: () => (
+export const BrandColors: Story ={
+    render: ()=>(
         <>
-            <Button>Default</Button>
-            <Button variant="neutral">Neutral</Button>
-            <Button variant="primary">Primary</Button>
-            <Button variant="secondary">Secondary</Button>
-            <Button variant="accent">Accent</Button>
-            <Button variant="ghost">Ghost</Button>
+            <Button value="default">Default</Button>
+            <Button variant='neutral'>Neutral</Button>
+            <Button variant='primary'>Primary</Button>
+            <Button variant='secondary'>Secondary</Button>
+            <Button variant='accent'>Accent</Button>
+            <Button variant='ghost'>Ghost</Button>
             <Button isLink={true}>Link</Button>
         </>
-    ),
-};
+    )
+}
 
 export const StateColors: Story = {
-    render: () => (
+    render: ()=>(
         <>
-            <Button variant="success">Success</Button>
-            <Button variant="info">Info</Button>
-            <Button variant="warning">Warning</Button>
-            <Button variant="error">Error</Button>
+        <Button variant='success'>Success</Button>
+        <Button variant='error'>Error</Button>
+        <Button variant='warning'>Warning</Button>
         </>
-    ),
-};
-
-export const OutlineButtons: Story = {
-    render: () => (
-        <>
-            <Button>Default</Button>
-            <Button isOutline variant="neutral">
-                Neutral
-            </Button>
-            <Button isOutline variant="primary">
-                Primary
-            </Button>
-            <Button isOutline variant="secondary">
-                Secondary
-            </Button>
-            <Button isOutline variant="accent">
-                Accent
-            </Button>
-            <Button isOutline variant="ghost">
-                Ghost
-            </Button>
-        </>
-    ),
-};
-
-export const OutlineStateButtons: Story = {
-    render: () => (
-        <>
-            <Button isOutline variant="success">
-                Success
-            </Button>
-            <Button isOutline variant="info">
-                Info
-            </Button>
-            <Button isOutline variant="warning">
-                Warning
-            </Button>
-            <Button isOutline variant="error">
-                Error
-            </Button>
-        </>
-    ),
-};
+    )
+}
 
 
-export const ButtonSizes: Story = {
-    render: () => (
+export const OutLineButtons: Story={
+    render: ()=>(
         <>
-            <Button variant="neutral" size="tiny">
-                Tiny
-            </Button>
-            <Button variant="neutral" size="small">
-                Small
-            </Button>
-            <Button variant="neutral" size="normal">
-                Normal
-            </Button>
-            <Button variant="neutral" size="large">
-                Large
-            </Button>
+        <Button>Default</Button>
+        <Button isOutline variant="neutral">Neutral</Button>
+        <Button isOutline variant='primary'>Primary</Button>
+        <Button isOutline variant='secondary'>Secondary</Button>
+        <Button isOutline variant='accent'>Accent</Button>
+        <Button isOutline variant='ghost'>Ghost</Button>
         </>
-    ),
-};
+    )
+}
 
-export const WideButton: Story = {
-    render: () => (
+export const OutLineStateButtons: Story={
+    render: ()=>(
         <>
-            <Button variant="neutral" shape="wide">
-                Wide Button
-            </Button>
+        <Button isOutline variant='success'>Success</Button>
+        <Button isOutline variant='error'>Error</Button>
+        <Button isOutline variant='warning'>Warning</Button>
         </>
-    ),
-};
+    )
+}
+
+export const ButtonSize: Story ={
+    render: ()=>(
+        <>
+        <Button size='tiny' variant='neutral'>Tiny</Button>
+        <Button size='small' variant='neutral'>Small</Button>
+        <Button size='normal' variant='neutral'>Normal</Button>
+        <Button size='large' variant='neutral'>Larg</Button>
+        </>
+    )
+}
+
+
+export const WideButton: Story={
+    render:()=>(
+        <Button variant='neutral' shape='wide'>
+            Wide Button
+        </Button>
+    )
+}
+
 
 export const FullButton: Story = {
     render: () => (

@@ -1,4 +1,4 @@
-@import './components/button.css'; 
-@import './components/loading.css'; 
-@import './components/card.css';
-@import './components/badge.css';
+@import './button.css';
+@import './loading.css';
+@import '/card.css';
+@import './badge.css'
