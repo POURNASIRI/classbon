@@ -1,49 +1,25 @@
-import { CourseSummary } from "@/types/course-summary.interface";
+
 import { HomeHeroSection } from "./_components/home-hero-section";
 import { CourseCardList } from "./(courses)/courses/_components/course-card-list";
-import {IconArrowLeftFill, IconClock} from './_components/icons/icons'
+import {IconArrowLeftFill} from './_components/icons/icons'
 import { homeFeatures } from "@/data/home-feature";
 import Feature from "./_components/feature/feature";
 import { Button } from "./_components/button";
-// import { BlogPostSummary } from "@/types/blog-post-summary.interface";
 import { BlogPostCardList } from "./(blog)/_components/blog-post-card-list";
-import { API_URL } from "@/configs/global";
-
-
-async function GetNewestCourses(count:number): Promise<CourseSummary[]> {
-      // Note: this fetch is server side fetch becouse this component
-      //  is server component.
-
-
-      //NOTE 1-
-      // next.js cash this URL if need use this url and function in another page
-      // just need copy this function and passed in specific component 
-      // in next.js hole the application this function just call one time
-      const res = await fetch(`${API_URL}/courses/newest/${count}`,{
-        next:{
-          revalidate:24 * 60 * 60    //24h
-        }
-      });
-      return res.json();
-      // NOTE 2-
-      // response of this function also cash in next.js data chashing in server side
-      // when we navigate another page and return to uome page in this time 
-      // response read from chash and dont fetch again from database expect when our 
-      // data be going revalidate
-}
+import { Suspense } from "react";
+import Loading from "./loading";
 
 
 
-// Note Static Rendering (read Readme file )
+
+
+
+
+
 
 export default async function Home() {
 
-  const newestCoursesData = await GetNewestCourses(4)
-  // const newestBlogPostdata =  GetNewestPosts(4)
-
-// NOTE 
-//  const[newestCourses,newestBlogPost] = await Promise.all([newestCoursesData,newestBlogPostdata])
-// console.log(newestBlogPost)
+  
 
   return (
       <>
@@ -66,7 +42,9 @@ export default async function Home() {
                 برای بروز موندن، یاد گرفتن نکته های تازه ضروریه
               </p>
             </div>
-            <CourseCardList courses={newestCoursesData}/>
+            <Suspense fallback={<Loading/>}>
+            <CourseCardList courses={[]}/>
+            </Suspense>
           </section>
           <section className="px-2 my-40">
                 {/* <div className="sticky top-0 pt-0 text-center"> */}
