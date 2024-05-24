@@ -5,8 +5,9 @@ import {IconArrowLeftFill, IconClock} from './_components/icons/icons'
 import { homeFeatures } from "@/data/home-feature";
 import Feature from "./_components/feature/feature";
 import { Button } from "./_components/button";
-import { BlogPostSummary } from "@/types/blog-post-summary.interface";
+// import { BlogPostSummary } from "@/types/blog-post-summary.interface";
 import { BlogPostCardList } from "./(blog)/_components/blog-post-card-list";
+import { API_URL } from "@/configs/global";
 
 
 async function GetNewestCourses(count:number): Promise<CourseSummary[]> {
@@ -18,7 +19,7 @@ async function GetNewestCourses(count:number): Promise<CourseSummary[]> {
       // next.js cash this URL if need use this url and function in another page
       // just need copy this function and passed in specific component 
       // in next.js hole the application this function just call one time
-      const res = await fetch(`https://api.classbon.com/api/courses/newest/${count}`,{
+      const res = await fetch(`${API_URL}/courses/newest/${count}`,{
         next:{
           revalidate:24 * 60 * 60    //24h
         }
@@ -30,16 +31,7 @@ async function GetNewestCourses(count:number): Promise<CourseSummary[]> {
       // response read from chash and dont fetch again from database expect when our 
       // data be going revalidate
 }
-async function GetNewestPosts(count:number): Promise<BlogPostSummary[]> {
 
-  const res = await fetch(`https://api.classbon.com/api/blog/newest/${count}`,{
-    next:{
-      revalidate:24 * 60 * 60    //24h
-    }
-  });
-  return res.json();
-
-}
 
 
 // Note Static Rendering (read Readme file )
