@@ -2,7 +2,7 @@ import React from "react";
 
 
 import { CourseCard } from "./course-card";
-import { CourseSummary } from "@/types/course-summery.interface";
+import { CourseSummary } from "@/types/course-summary.interface";
 
 
 type CourseCardListProps = {

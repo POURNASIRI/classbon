@@ -1,11 +1,13 @@
 
-import { CourseSummary } from "@/types/course-summery.interface";
+import { CourseSummary } from "@/types/course-summary.interface";
 import {HomeHeroSection} from "./_components/home-hero-section/home-hero-section";
 import { CourseCardList } from "./(courses)/_component/course-card-list";
 import Feature from "./_components/feature/feature";
 import { homeFeatures } from "@/data/home-feature";
 import { IconArrowLeftFill } from "./_components/icons/icons";
 import { Button } from "./_components/button";
+import { BlogPostCardList } from "./(blog)/_components/blog-post-card-list";
+import { BlogPostSummary } from "@/types/blog-post-summary.interface";
 
 
 
@@ -18,23 +20,26 @@ async function getNewestCourses(count:number):Promise<CourseSummary[]>{
       });
     return res.json()
 }
-async function getNewestPosts(count:number):Promise<CourseSummary[]>{
-    const res  = await fetch(`https://api.classbon.com/api/blog/newest/${count}`,
-      {
-        next:{
-          revalidate: 24 * 60 * 60
-        }
-      });
-    return res.json()
-}
+async function GetNewestPosts(count:number): Promise<BlogPostSummary[]> {
+
+    const res = await fetch(`https://api.classbon.com/api/blog/newest/${count}`,{
+      next:{
+        revalidate:24 * 60 * 60    //24h
+      }
+    });
+    return res.json();
+
+  
+  }
 
 
 export default async function Home() {
 
-   const newestCoursesData =  getNewestCourses(4)
-   const newestBlogPostsData =  getNewestCourses(4)
-   const [newestCourses,newestBlogPosts] = await Promise.all([newestCoursesData,newestBlogPostsData])
-   console.log(newestBlogPosts)
+   const newestCoursesData = await  getNewestCourses(4)
+//    const newestBlogPostsData = await  GetNewestPosts(4)
+//    const [newestCourses,newestBlogPosts] = await Promise.all([newestCoursesData,newestBlogPostsData])
+
+//  console.log(newestBlogPostsData)
   return (
     <>
      <HomeHeroSection/>
@@ -54,7 +59,7 @@ export default async function Home() {
                 برای به‌روز موندن، یاد گرفتن نکته‌های تازه ضروری‌ه!
             </p>
         </div>
-        <CourseCardList courses={newestCourses} />
+        <CourseCardList courses={newestCoursesData} />
         </section>
         <section className="px-2 my-40">
                 {/* <div className="sticky top-0 pt-0 text-center"> */}
@@ -94,6 +99,28 @@ export default async function Home() {
                         </Button>
                     </div>
                 </div>
+            </section>
+            <section className="container py-20">
+                <div className="flex flex-col xl:flex-row gap-4 justify-center xl:justify-between items-center">
+                    <div className="text-center xl:text-right">
+                        <h2 className="text-2xl font-extrabold">
+                            تازه‌ترین مقاله‌های آموزشی
+                        </h2>
+                        <p className="mt-3 text-lg">
+                            به رایگان، به‌روزترین مقاله‌های دنیای تکنولوژی رو در
+                            اختیارت می‌ذاریم؛ چون پیشرفتت برامون مهمه!
+                        </p>
+                    </div>
+                    <Button
+                        variant="neutral"
+                        className="font-semibold"
+                        animatedIcon={true}
+                    >
+                        همه مقاله‌ها
+                        <IconArrowLeftFill fill="currentColor" />
+                    </Button>
+                </div>
+                {/* <BlogPostCardList posts={newestBlogPosts} /> */}
             </section>
     </>
   );

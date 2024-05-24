@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { CourseSummary } from "@/types/course-summery.interface";
+import { CourseSummary } from "@/types/course-summary.interface";
 import { Badge } from "@/app/_components/badge";
 import { IconArrowLeftFill, IconClock } from "@/app/_components/icons/icons";
 import { Price } from "@/app/_components/price";
