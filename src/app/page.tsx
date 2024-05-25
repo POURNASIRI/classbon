@@ -9,6 +9,8 @@ import { BlogPostCardList } from "./(blog)/_components/blog-post-card-list";
 import { Suspense } from "react";
 import Loading from "./loading";
 import { CardPlaceholder } from "./_components/placeholders/card/card-placeholder";
+import { TestimonialList } from "./_components/testimonial/testimonial-list";
+import { testimonials } from "@/data/testimonials";
 
 
 
@@ -108,6 +110,18 @@ export default async function Home() {
                 </div>
                 <BlogPostCardList posts={[]}/>
             </section>
+            <div className="relative mt-32">
+        <div className="bg-primary pointer-events-none absolute bottom-0 left-1/2 aspect-square w-1/2 -translate-x-1/2 rounded-full opacity-5 -top-52 blur-3xl"></div>
+        <h2 className="text-info relative z-0 mx-auto text-3xl font-extrabold block w-fit">
+          <span className="-z-10 w-8 h-8 absolute bg-info opacity-25 -top-2 rounded-full inline-block -right-3"></span>
+          تجربه هم‌میسرهای کلاسبن
+        </h2>
+        <p className=" mb-32 text-lg text-center mt-2">
+          تو اینجا تنها نیستی. ببین هم‌مسیرهات نظرشون در مورد دوره‌های کلاسبن
+          چیه
+        </p>
+        <TestimonialList testimonials={testimonials} />
+      </div>
 
       </>
   );
