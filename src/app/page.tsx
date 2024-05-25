@@ -8,6 +8,7 @@ import { Button } from "./_components/button";
 import { BlogPostCardList } from "./(blog)/_components/blog-post-card-list";
 import { Suspense } from "react";
 import Loading from "./loading";
+import { CardPlaceholder } from "./_components/placeholders/card/card-placeholder";
 
 
 
@@ -42,7 +43,7 @@ export default async function Home() {
                 برای بروز موندن، یاد گرفتن نکته های تازه ضروریه
               </p>
             </div>
-            <Suspense fallback={<Loading/>}>
+            <Suspense fallback={<CardPlaceholder count={4} className="mt-5"/>}>
             <CourseCardList courses={[]}/>
             </Suspense>
           </section>
