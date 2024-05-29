@@ -29,3 +29,5 @@ export { default as IconToc } from './src/toc';
 export { default as IconToman } from './src/toman';
 export { default as IconUserProfile } from './src/user-profile';
 export { default as IconVideo } from './src/video';
+export { default as IconChevronUp } from './src/chevron-up';
+export { default as IconChevronDown } from './src/chevron-down';
