@@ -13,6 +13,7 @@ export const Accordion: React.FC<AccordionProps> = ({
     setActiveIndex(activeIndex === index ? null : index);
   };
 
+
   return (
     <div className="accordion">
       {data.map((item, index) => (

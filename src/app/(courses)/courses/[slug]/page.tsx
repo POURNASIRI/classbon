@@ -7,6 +7,8 @@ import { Tabs } from "@/app/_components/tabs";
 import { Tab } from "@/types/tab.type";
 import { Accordion as AccordionType } from "@/types/accordion.types";
 import { Accordion } from "@/app/_components/accordion";
+import CourseComments from "./_components/comments/course-comments";
+
 
 
 export async function generateStaticParams() {
@@ -35,6 +37,8 @@ export default async function CourseDetails({params}: {params: {slug: string}}) 
         })
     )
 
+    
+
     const tabs: Tab[] = [
         {
             label: "مشخصات دوره",
@@ -42,7 +46,7 @@ export default async function CourseDetails({params}: {params: {slug: string}}) 
         },
         {
             label: "دیدگاه‌ها و پرسش",
-            content: "course comments",
+            content: <CourseComments/>,
         },
         {
             label: "سوالات متداول",
