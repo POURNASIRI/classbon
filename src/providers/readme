@@ -1,3 +1,0 @@
-Because in this next version we have clinet component and srever components 
-we can use providers just on client component so we should better store our 
-providers in this folder
