@@ -15,6 +15,8 @@ interface NotFoundError extends Problem {} // 404 api not found
 interface UnhandledException extends Problem {} // 500 
 interface NetworkError extends Problem {} //
 
+type ApiError = BadRequestError | UnauthorizedError | ValidationError | NotFoundError | UnhandledException | NetworkError
+
 export type {
     Problem,
     BadRequestError,
@@ -22,7 +24,8 @@ export type {
     ValidationError,
     NotFoundError,
     UnhandledException,
-    NetworkError
+    NetworkError,
+    ApiError
 };
 
 

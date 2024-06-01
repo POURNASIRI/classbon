@@ -1,6 +1,6 @@
 'use client'
 
-import { createData, readData } from "@/core/http-service"
+import { createData, readData } from "@/core/http-service/http-service"
 import { useEffect } from "react"
 
 const CourseComments = ()=>{
