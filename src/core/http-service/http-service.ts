@@ -1,4 +1,4 @@
-import { API_URL } from "@/configs/global";
+
 import {ApiError,} from '@/types/http-errors.interface'
 import axios, { AxiosRequestConfig, AxiosRequestHeaders, AxiosResponse } from "axios";
 import { errorHandler, networkErrorStrategy } from "./http-error-strategies";
@@ -8,7 +8,7 @@ import { errorHandler, networkErrorStrategy } from "./http-error-strategies";
 
 
 const httpService = axios.create({
-    baseURL: API_URL,
+    baseURL: `https://api.classbon.com/api`,
     headers: {
         "Content-Type": "application/json",
     },

@@ -1,14 +1,28 @@
 'use client'
 
-import { createData, readData } from "@/core/http-service/http-service"
-import { useEffect } from "react"
+import { useParams } from "next/navigation"
+import { UseCourseComments } from "../../_api/get-comments"
+
+
+
+
 
 const CourseComments = ()=>{
-    useEffect(()=>{
-        createData('/bad-request')
-    },[])
+    const {slug} = useParams()
+  const{data: comments} =  UseCourseComments({
+        params:{
+            slug:slug as string,
+            page:1
+        }
+    })
+
     return(
         <>
+            {
+                comments?.data.map(p =>(
+                    <p key={p.id} className="mb-8">{p.commentText}</p>
+                ))
+            }
         </>
     )
 }
