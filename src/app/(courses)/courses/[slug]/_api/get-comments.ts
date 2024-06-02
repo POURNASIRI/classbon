@@ -29,7 +29,9 @@ export const UseCourseComments = ({params}:GetCommentsOptions)=>{
         // defiend key for catch comment data
         queryKey:['courseCommnets'],
         //function to get data
-        queryFn:()=>getComments({params})
+        queryFn:()=>getComments({params}),
+        staleTime:5 * 60 * 60 * 100,
+        cacheTime:6 * 60 * 60 * 100,
     })
     return{data};
 
