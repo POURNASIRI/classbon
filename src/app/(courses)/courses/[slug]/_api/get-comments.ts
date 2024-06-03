@@ -26,7 +26,7 @@ const getComments = ({
 
 // 3-defiend custom hook function
 export const UseCourseComments = ({params}:GetCommentsOptions)=>{
-   const {data} =  useQuery({
+   const {data,isLoading} =  useQuery({
         // defiend key for catch comment data
         queryKey:['courseCommnets'],
         //function to get data
@@ -34,7 +34,7 @@ export const UseCourseComments = ({params}:GetCommentsOptions)=>{
         staleTime:5 * 60 * 60 * 100,
         gcTime:6 * 60 * 60 * 100,
     })
-    return{data};
+    return{data,isLoading};
 
 }
  

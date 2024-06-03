@@ -3,6 +3,7 @@
 import { useParams } from "next/navigation"
 import { UseCourseComments } from "../../_api/get-comments"
 import { Comment } from "@/app/_components/comment"
+import { TextPlaceholder } from "@/app/_components/placeholders/text/text-placeholder"
 
 
 
@@ -10,7 +11,7 @@ import { Comment } from "@/app/_components/comment"
 
 const CourseComments = ()=>{
     const {slug} = useParams()
-  const{data: comments} =  UseCourseComments({
+  const{data: comments, isLoading} =  UseCourseComments({
         params:{
             slug:slug as string,
             page:1
@@ -23,6 +24,10 @@ const CourseComments = ()=>{
                 comments?.data.map(comment =>(
                     <Comment key={`comment-${comment.id}`} {...comment} variant="info"/>
                 ))
+                
+            }
+            {
+                isLoading && <TextPlaceholder/>
             }
         </>
     )
