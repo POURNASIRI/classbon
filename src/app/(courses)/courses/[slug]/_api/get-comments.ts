@@ -3,7 +3,8 @@
 
 import { readData } from "@/core/http-service/http-service";
 import { CourseCommentList } from "../_types/course-comments.interface";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
+
 
 
 // 1 defiend type for our fetch
@@ -31,7 +32,7 @@ export const UseCourseComments = ({params}:GetCommentsOptions)=>{
         //function to get data
         queryFn:()=>getComments({params}),
         staleTime:5 * 60 * 60 * 100,
-        cacheTime:6 * 60 * 60 * 100,
+        gcTime:6 * 60 * 60 * 100,
     })
     return{data};
 

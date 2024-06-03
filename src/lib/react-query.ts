@@ -1,4 +1,5 @@
-import { QueryCache, QueryClient } from "react-query";
+import { QueryCache, QueryClient } from "@tanstack/react-query";
+
 
 export const queryClient = new QueryClient({
 
@@ -17,9 +18,9 @@ export const queryClient = new QueryClient({
             refetchOnWindowFocus:false,   // when browser close or minimize or we chage browser tab and comeback again to the tab 
             // react query refech again to get fresh data//
             
-            useErrorBoundary:false,   // we dont want use default react query error handling//
+            throwOnError:false,   // we dont want use default react query error handling//
             
-            cacheTime: 1000 * 60 * 60 * 24  //time that react query catch our fetch //
+            gcTime: 1000 * 60 * 60 * 24  //time that react query catch our fetch //
         }
     }
 }) 
