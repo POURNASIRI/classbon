@@ -13,7 +13,7 @@ export const Comment: React.FC<CommentProps> = ({
     isResponse,
     variant = "neutral",
 }) => {
-    const srcPath = userId ? API_URL + "/picture/" + userId : undefined;
+    const srcPath = userId ? `https://api.classbon.com/api` + "/picture/" + userId : undefined;
     return (
         <div className={`comment comment-${isResponse ? "end" : "start"}`}>
             <div className="comment-image">
