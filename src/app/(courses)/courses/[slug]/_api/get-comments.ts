@@ -27,7 +27,7 @@ const getComments = ({
 
 // 3-defiend custom hook function
 export const UseCourseComments = ({params}:GetCommentsOptions)=>{
-   const {data,error,isFetchingNextPage,fetchNextPage,hasNextPage,refetch} =  useInfiniteQuery({
+   const {data,error,isFetchingNextPage,fetchNextPage,hasNextPage,refetch,isFetching} =  useInfiniteQuery({
         // defiend key for catch comment data
         // use params.slug to create uniqe cache for each course
         queryKey:['courseCommnets',params.slug],
@@ -46,6 +46,7 @@ export const UseCourseComments = ({params}:GetCommentsOptions)=>{
         isFetchingNextPage,
         fetchNextPage,
         hasNextPage,
+        isFetching,
         refetch};
 
 }
