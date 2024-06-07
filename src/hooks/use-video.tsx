@@ -1,3 +1,5 @@
+import { useReducer, useRef } from "react";
+
 interface VideoState {
     isPlaying:boolean;
     currentTime:number;
@@ -41,3 +43,15 @@ const videoReaducer = (state:VideoState, action:videoAction): VideoState => {
                 return state;
     }
 } 
+
+
+
+const useVideo = (src:string)=>{
+    const videoRef = useRef<HTMLVideoElement>(null);
+
+    const [state,dispatch]= useReducer(videoReaducer,{
+        isPlaying:false,
+        currentTime:0,
+        
+    })
+}
