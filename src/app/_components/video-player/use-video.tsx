@@ -46,7 +46,7 @@ const videoReaducer = (state:VideoState, action:videoAction): VideoState => {
 
 
 
-const useVideo = (src:string)=>{
+export const useVideo = (src:string)=>{
     const videoRef = useRef<HTMLVideoElement>(null);
 
     const [state,dispatch]= useReducer(videoReaducer,{
@@ -165,7 +165,7 @@ const useVideo = (src:string)=>{
     const pause = ()=>videoRef.current!.pause()
     const seek = (time:number) => videoRef.current!.currentTime = time
     //for full screen
-    const fullScreen = videoRef.current!.requestFullscreen()
+    const fullScreen = () => videoRef.current!.requestFullscreen();
     const stop = ()=>{
         const video = videoRef.current!;
         video.currentTime = 0
