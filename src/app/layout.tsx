@@ -4,6 +4,7 @@ import localFont from 'next/font/local'
 import { Header } from "./_components/header";
 import { Footer } from "./_components/footer";
 import QueryProvider from "@/providers/react-query-provider";
+import NextTopLoader from "nextjs-toploader";
 
 const figtree = Figtree({
   display:"swap",
@@ -43,6 +44,7 @@ export default function RootLayout({
     <html  dir="rtl" className={` dark ${figtree.variable} ${IranSans.variable}`}>
       <body className="min-h-screen grid grid-rows-[80px_1fr_auto] font-bold uppercase
        dark:bg-base-100 dark:text-base-content ">
+        <NextTopLoader showSpinner={false} color="var(--color-primary)" />
         <QueryProvider>
         <Header/>
         <main>
