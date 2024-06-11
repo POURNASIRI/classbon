@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import { Size } from "../types/size.type";
 import { TextboxProps } from "./textbox.types";
+import { forwardRef } from "react";
 
 
 const SizeClasses :Record<Size,string> = {
@@ -9,14 +10,15 @@ const SizeClasses :Record<Size,string> = {
     normal:"textbox-md",
     large:"textbox-lg",
 }
-
-export const TextBox:React.FC<TextboxProps> = ({
+// forwardRef is a function that take two parameters so we use two types for that, one 
+// is our refrence type and two is our component type 
+export const TextBox:React.FC<TextboxProps> =forwardRef<HTMLInputElement,TextboxProps> (({
     variant = 'ghost',
     type = "text",
     className,
     size = "normal",
     ...rest
-})=>{
+}, ref)=>{
     const classes = classNames(
         "textbox",
         "w-full",
@@ -24,5 +26,5 @@ export const TextBox:React.FC<TextboxProps> = ({
         { [`textbox-${variant}`]: variant },
         { [`${SizeClasses[size]}`]: size }
     );
-    return <input type={type} className={classes} {...rest}/>;
-}
+    return <input ref={ref} type={type} className={classes} {...rest}/>;
+})
