@@ -4,17 +4,29 @@ import { Button } from "@/app/_components/button/button";
 import { SignIn } from "../types/signin.types";
 import { useForm } from "react-hook-form";
 import { TextInput } from "@/app/_components/form-input";
+import { useSingIn } from "../api/signin";
+import { useRouter } from "next/navigation";
+
 
 
 const SignInForm = () => {
     const {
         register,
         handleSubmit,
+        getValues,
         formState: { errors },
     } = useForm<SignIn>();
 
-    const onSubmit = (data: any) => {
-        console.log(data);
+    const router = useRouter()
+
+    const signIn = useSingIn({
+        onSuccess() {
+            router.push(`/verify?mobile = ${getValues('mobile')}`)
+        },
+    })
+
+    const onSubmit = (data:any) => {
+        signIn.submit(data)
     }
 
     return (
@@ -25,8 +37,11 @@ const SignInForm = () => {
             </p>
             <form className="flex flex-col gap-6 mt-16" onSubmit={handleSubmit(onSubmit)}>
                 <TextInput<SignIn>
+                    // this property for register
                   register={register}
+                  // this property for name
                   name={"mobile"}
+                  // and rules property is an object for our validation
                   rules={{
                     required: 'شماره موبایل الزامی است',
                     maxLength: {
@@ -38,10 +53,11 @@ const SignInForm = () => {
                         message: 'شماره موبایل باید 11 رقم باشد'
                       }
                   }}
+                  // this property for gry errors
                   errors={errors}
                 />
 
-                <Button type="submit" variant="primary">
+                <Button type="submit" isLoading={signIn.isPending} variant="primary">
                     تایید و دریافت کد
                 </Button>
             </form>

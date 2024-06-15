@@ -125,11 +125,9 @@ export const useVideo = (src:string)=>{
 
 
         //events
-
         const handleEvent = (eventName:string, handler:()=>void)=>{
             const video = videoRef.current!
             video.addEventListener(eventName,handler)
-
             return()=> video.removeEventListener(eventName,handler)
         }
 
@@ -182,6 +180,5 @@ export const useVideo = (src:string)=>{
         fullScreen,
 
     }
-
 }
 

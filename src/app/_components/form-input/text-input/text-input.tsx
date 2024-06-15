@@ -11,7 +11,10 @@ const TextInput = <TFormValues extends FieldValues>({
     variant,
     ...rest
 }: TextInputProps<TFormValues>) => {
+    // for get method from rect hook form we can get error for each fields 
+// get method get two parameters errors and name 
     const error = get(errors, name);
+    // to detect is error appear or not
     const hasError = !!error;
     return (
         <>
