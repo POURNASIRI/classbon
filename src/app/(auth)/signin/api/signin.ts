@@ -1,7 +1,7 @@
 import { createData } from "@/core/http-service/http-service";
 import { SignIn } from "../types/signin.types";
 import { useMutation } from "@tanstack/react-query";
-import SingIn from "../page";
+
 
 const signIn = (model:SignIn):Promise<void> => createData<SignIn,void>("/signin", model)
 
