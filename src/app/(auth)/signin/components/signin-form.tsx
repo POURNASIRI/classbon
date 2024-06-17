@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form";
 import { TextInput } from "@/app/_components/form-input";
 import { useSingIn } from "../api/signin";
 import { useRouter } from "next/navigation";
+import { useNotificationStore } from "@/store/notification.store";
+import { useEffect } from "react";
 
 
 
@@ -28,6 +30,19 @@ const SignInForm = () => {
     const onSubmit = (data:any) => {
         signIn.submit(data)
     }
+    
+    
+    // note : when we use useNotification hook to prevent rerender component to change any our store
+    // property we must use like this:
+    // in this way the component just rerender when  showNotification has been change
+    const showNotification = useNotificationStore(state => state.showNotification);
+
+    useEffect(() => {
+        showNotification({
+            type: 'error',
+            message: 'error'
+        });
+    }, []);
 
     return (
         <>

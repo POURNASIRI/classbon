@@ -1,6 +1,7 @@
 import { Notification } from "@/types/notification.interface"
 import { generateID } from "@/utils/string";
 import { create } from "zustand";
+import { devtools } from "zustand/middleware";
 // step 1
 type NotificationState = {
 // step 2
@@ -13,10 +14,10 @@ type NotificationState = {
 }
 
 // step 4
-export const useNotificationStore = create<NotificationState>(
+export const useNotificationStore = create<NotificationState>()(
 //step5    
     // for set our state and get our state values 
-    (set,get)=>({
+    devtools((set,get)=>({
        notifications : [],
        showNotification:(notification)=>{
         //function that generate id in utils folder
@@ -33,5 +34,4 @@ export const useNotificationStore = create<NotificationState>(
                 notifications:state.notifications.filter(p=>p.id !==id)
             }))
        } 
-    })
-)
+    })))
