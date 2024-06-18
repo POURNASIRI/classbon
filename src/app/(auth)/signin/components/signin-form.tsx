@@ -21,9 +21,15 @@ const SignInForm = () => {
 
     const router = useRouter()
 
+    const showNotification  = useNotificationStore(state => state.showNotification)
+
     const signIn = useSingIn({
         onSuccess() {
             router.push(`/verify?mobile = ${getValues('mobile')}`)
+            showNotification({
+                message:"کد تایید به شماره شما ارسال شد",
+                type:"success"
+            })
         },
     })
 
@@ -35,14 +41,7 @@ const SignInForm = () => {
     // note : when we use useNotification hook to prevent rerender component to change any our store
     // property we must use like this:
     // in this way the component just rerender when  showNotification has been change
-    const showNotification = useNotificationStore(state => state.showNotification);
 
-    useEffect(() => {
-        showNotification({
-            type: 'success',
-            message: 'عملیات با موفقیت انجام شد'
-        });
-    }, []);
 
     return (
         <>
