@@ -14,7 +14,7 @@ const VerificationForm = () => {
         className="flex flex-col gap-6 mt-10 flex-1"
       > 
         <AuthCode className="mt-10" onChange={value=>{
-
+            console.log(value)
         }}/>
 
 

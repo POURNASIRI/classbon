@@ -2,7 +2,7 @@
 'use client'
 
 
-import { FC, useRef } from "react";
+import React, { FC, useEffect, useRef } from "react";
 import { AuthCodeProps, AuthInputProps } from "./auth-code.types";
 import classNames from "classnames";
 
@@ -25,6 +25,12 @@ const AuthCode: FC<AuthCodeProps> = ({
     // keyDown or focus we need Ref
 
 
+    useEffect(()=>{
+        if(autoFocus){
+            inputsRef.current[0].focus()
+        }
+    },[autoFocus])
+
     const inputProps:AuthInputProps = {
         min : '0',
         max:'9',
@@ -33,19 +39,42 @@ const AuthCode: FC<AuthCodeProps> = ({
 
     // functions
     const sendResult = ()=>{
-
+        const result = inputsRef.current.map(input => input.value).join('')
+        onChange(result)
     }
 
-    const handleonChange = ()=>{
-
+    const handleonChange = (e:React.ChangeEvent<HTMLInputElement>)=>{
+            const {target:{value,nextElementSibling}} = e;
+            // we cast nextElementSibling to HTMLinputElement for using focus property
+            if(value.match(inputProps.pattern)){
+                if(nextElementSibling !== null){
+                    (nextElementSibling as HTMLInputElement).focus()
+                }
+            }else{
+                e.target.value = ''
+            }
+            sendResult()
     }
 
-    const handleOnFocus = ()=>{
-
+    const handleOnFocus = (e:React.FocusEvent<HTMLInputElement>)=>{
+        e.target.select();
     }
 
-    const handleOnKeyDown = ()=>{
-
+    const handleOnKeyDown = (e:React.KeyboardEvent<HTMLInputElement>)=>{
+            const {key} = e
+            const target = e.target as HTMLInputElement
+            if(key === 'Backspace'){
+                if(target.value === ''){
+                    if(target.previousElementSibling !== null){
+                        const priviouseElemnt = target.previousElementSibling as HTMLInputElement
+                        priviouseElemnt.value = ""
+                        priviouseElemnt.focus()
+                    }
+                }
+            }else{
+                target.value = ""
+            }
+            sendResult()
     }
 
     const classes = classNames("textbox flex-1 w-1 text-center",{
@@ -75,7 +104,7 @@ const AuthCode: FC<AuthCodeProps> = ({
 
 
     return(
-        <div className={`flex gap-4 flex-row-reverse`}>
+        <div  className={`flex gap-4 flex-row-reverse`}>
             {
                 inputs
             }
