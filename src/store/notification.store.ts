@@ -10,6 +10,7 @@ type NotificationState = {
 //step3
     // defiend functions that use in store becuase acsses to store value well be easly 
     showNotification: (notification: Omit <Notification, 'id'>) => void;
+    
     dismissNotification:(id:string) =>void
 }
 
