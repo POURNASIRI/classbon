@@ -4,8 +4,15 @@
 import AuthCode from "@/app/_components/auth-code/auth-code";
 import { AuthCodeRef } from "@/app/_components/auth-code/auth-code.types";
 import { Button } from "@/app/_components/button/button";
+import { Timer } from "@/app/_components/timer/timer";
 import Link from "next/link";
 import { useRef } from "react";
+
+const getTwoMinutesFromNow = () => {
+  const time = new Date();
+  time.setSeconds(time.getSeconds() + 120);
+  return time;
+};
 
 const VerificationForm = () => {
 
@@ -25,7 +32,7 @@ const VerificationForm = () => {
         }}/>
 
 
-        Timer
+        <Timer expiryTimestamp={getTwoMinutesFromNow()}/>
         <Button
           isLink={true}
           
