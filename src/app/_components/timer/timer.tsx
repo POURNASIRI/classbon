@@ -3,6 +3,7 @@ import { Size } from "../types/size.type";
 import { TimerProps, TimerRef } from "./timer.types";
 import { useTimer } from "react-timer-hook";
 import classNames from "classnames";
+import { TimerProgress } from "./timer-progress";
 
 const sizeClasses: Record<Size, string> = {
     tiny: "timer-xs",
@@ -69,19 +70,18 @@ export const Timer = forwardRef<TimerRef, TimerProps>(
         ) => {
             if (value !== null) {
                 return (
-                    // <TimerProgress
-                    //     value={value}
-                    //     maxValue={maxValue}
-                    //     datePart={datePart}
-                    //     size={size}
-                    //     showTitle={showTitle}
-                    //     variant={variant}
-                    // >
-                    //     {unit}
-                    // </TimerProgress>
-                    <span>
-                    {unit}
-                    </span>
+                    <>
+                    <TimerProgress
+                        value={value}
+                        maxValue={maxValue}
+                        datePart={datePart}
+                        size={size}
+                        showTitle={showTitle}
+                        variant={variant}
+                    >
+                        {unit}
+                    </TimerProgress>
+                    </>
                 );
             }
         };
