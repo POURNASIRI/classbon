@@ -8,6 +8,8 @@ import { useSingIn } from "../api/signin";
 import { useRouter } from "next/navigation";
 import { useNotificationStore } from "@/store/notification.store";
 import { useEffect } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { signInSchema } from "../types/signin-schema";
 
 
 
@@ -17,7 +19,9 @@ const SignInForm = () => {
         handleSubmit,
         getValues,
         formState: { errors },
-    } = useForm<SignIn>();
+    } = useForm<SignIn>({
+        resolver:zodResolver(signInSchema)
+    });
 
     const router = useRouter()
 
@@ -56,17 +60,18 @@ const SignInForm = () => {
                   // this property for name
                   name={"mobile"}
                   // and rules property is an object for our validation
-                  rules={{
-                    required: 'شماره موبایل الزامی است',
-                    maxLength: {
-                        value: 11,
-                        message: 'شماره موبایل باید 11 رقم باشد'
-                      },
-                      minLength: {
-                        value: 11,
-                        message: 'شماره موبایل باید 11 رقم باشد'
-                      }
-                  }}
+                //   use zod schema
+                //   rules={{
+                //     required: 'شماره موبایل الزامی است',
+                //     maxLength: {
+                //         value: 11,
+                //         message: 'شماره موبایل باید 11 رقم باشد'
+                //       },
+                //       minLength: {
+                //         value: 11,
+                //         message: 'شماره موبایل باید 11 رقم باشد'
+                //       }
+                //   }}
                   // this property for gry errors
                   errors={errors}
                 />
