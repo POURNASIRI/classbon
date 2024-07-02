@@ -4,12 +4,13 @@ import { Button } from "@/app/_components/button/button";
 import { SignIn } from "../types/signin.types";
 import { useForm } from "react-hook-form";
 import { TextInput } from "@/app/_components/form-input";
-import { useSingIn } from "../api/signin";
+// import { useSingIn } from "../api/signin";
 import { useRouter } from "next/navigation";
 import { useNotificationStore } from "@/store/notification.store";
 import { useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signInSchema } from "../types/signin-schema";
+import { signInAction } from "@/actions/auth";
 
 
 
@@ -27,18 +28,20 @@ const SignInForm = () => {
 
     const showNotification  = useNotificationStore(state => state.showNotification)
 
-    const signIn = useSingIn({
-        onSuccess() {
-            router.push(`/verify?mobile = ${getValues('mobile')}`)
-            showNotification({
-                message:"کد تایید به شماره شما ارسال شد",
-                type:"success"
-            })
-        },
-    })
+    // const signIn = useSingIn({
+    //     onSuccess() {
+    //         router.push(`/verify?mobile = ${getValues('mobile')}`)
+    //         showNotification({
+    //             message:"کد تایید به شماره شما ارسال شد",
+    //             type:"success"
+    //         })
+    //     },
+    // })
 
     const onSubmit = (data:any) => {
-        signIn.submit(data)
+        // because we use react hook form we must call our action here
+        signInAction(data.mobile)
+        // signIn.submit(data)
     }
     
     
@@ -53,7 +56,7 @@ const SignInForm = () => {
             <p className="mt-2">
                 دنیای شگفت انگیز برنامه نویسی در انتظار شماست!
             </p>
-            <form className="flex flex-col gap-6 mt-16" onSubmit={handleSubmit(onSubmit)}>
+            <form  className="flex flex-col gap-6 mt-16" onSubmit={handleSubmit(onSubmit)}>
                 <TextInput<SignIn>
                     // this property for register
                   register={register}
@@ -76,7 +79,7 @@ const SignInForm = () => {
                   errors={errors}
                 />
 
-                <Button type="submit" isLoading={signIn.isPending} variant="primary">
+                <Button type="submit"  variant="primary">
                     تایید و دریافت کد
                 </Button>
             </form>
