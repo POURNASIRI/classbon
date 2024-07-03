@@ -7,10 +7,14 @@ import { TextInput } from "@/app/_components/form-input";
 // import { useSingIn } from "../api/signin";
 import { useRouter } from "next/navigation";
 import { useNotificationStore } from "@/store/notification.store";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signInSchema } from "../types/signin-schema";
 import { signInAction } from "@/actions/auth";
+
+// for send data from client to server we can use useFormState react hook from react dom 
+
+import { useFormState } from "react-dom";
 
 
 
@@ -38,9 +42,16 @@ const SignInForm = () => {
     //     },
     // })
 
+
+
+    //  useForm State
+    const[formState,action] =  useFormState(signInAction,{message:''})
+
     const onSubmit = (data:any) => {
+        const formData = new FormData()
+        formData.append('mobile',data.mobile)
         // because we use react hook form we must call our action here
-        signInAction(data.mobile)
+        action(formData)
         // signIn.submit(data)
     }
     
