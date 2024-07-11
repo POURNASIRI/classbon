@@ -7,6 +7,8 @@ import { serverActionWrapper } from "../server-action-wrapper";
 import { createData } from "@/core/http-service/http-service";
 import { SignIn } from "@/app/(auth)/signin/types/signin.types";
 import { SendAuthCode } from "@/app/(auth)/verify/types/verifi-user.types";
+import { Problem } from "@/types/http-errors.interface";
+import { signIn, signOut } from "@/auth";
 
 export async function signInAction(
     formState: OperationResult<string> | null,
@@ -38,4 +40,22 @@ export async function sendAuthCode(
     return serverActionWrapper(
         async()=> await createData<SendAuthCode,string>("/send-auth-code", { mobile })
     )
+}
+
+
+export async function verify (
+    state:Problem | undefined,
+    formData:FormData
+){
+    try{
+        await signIn("credentials",formData)
+    }catch(error){
+        return{
+          status:0,title:""  
+        } satisfies Problem
+    }
+}
+
+export async function logout(){
+    await signOut()
 }

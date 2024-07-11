@@ -39,7 +39,8 @@ import { createData } from "./core/http-service/http-service";
                         const user = await createData<VerifyUserModel, User>(`${API_URL}/verify`,{
                             username:credentials.username as string,
                             code: credentials.code as string
-                        })
+                        });
+                        console.log(user)
                         return{
                             accessToken:user.token
                         }
